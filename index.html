@@ -3,264 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analizador de Viabilidad Empresarial | Vibras Positivas</title>
+    <title>Analizador Pro | Vibras Positivas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
-        .transition-all { transition: all 0.4s ease-in-out; }
+        .gradient-vp { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); }
+        /* Control de Suscripción: Capa de bloqueo invisible */
+        #bloqueoSuscripcion { display: none; }
+        .suspendido #bloqueoSuscripcion { display: flex; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen font-sans">
+<body class="bg-slate-50 text-slate-900 min-h-screen font-sans" id="appBody">
 
-    <header class="bg-indigo-900 text-white shadow-xl sticky top-0 z-50">
+    <div id="bloqueoSuscripcion">
+        <div>
+            <i class="fas fa-lock text-6xl text-red-500 mb-4"></i>
+            <h1 class="text-3xl font-black">SUSCRIPCIÓN EXPIRADA</h1>
+            <p class="text-slate-400 mt-2">Contacte al administrador de Vibras Positivas para reactivar.</p>
+        </div>
+    </div>
+
+    <header class="gradient-vp text-white shadow-2xl sticky top-0 z-50 border-b-2 border-yellow-500">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="bg-yellow-400 text-indigo-900 w-10 h-10 flex items-center justify-center rounded-lg font-black shadow-lg">VP</div>
+                <div class="bg-yellow-500 text-indigo-950 w-10 h-10 flex items-center justify-center rounded-lg font-black shadow-lg">VP</div>
                 <div>
                     <h1 class="text-lg font-bold leading-tight">Vibras Positivas</h1>
-                    <p class="text-[10px] uppercase tracking-widest opacity-70">Financial Intelligence Unit</p>
+                    <p class="text-[10px] uppercase tracking-widest text-yellow-500 font-bold">Financial Intelligence 2026</p>
                 </div>
             </div>
-            <div class="text-right hidden md:block">
+            <div class="text-right">
                 <p id="reloj-colombia" class="text-sm font-mono font-bold text-yellow-400"></p>
-                <p class="text-[10px] opacity-60">Caucasia, Antioquia | Colombia</p>
+                <p class="text-[9px] opacity-60">Caucasia, Antioquia</p>
             </div>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 max-w-6xl">
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-sm font-bold text-indigo-900 uppercase mb-4 flex items-center">
-                    <i class="fas fa-search-dollar mr-2"></i> Datos de la Compañía a Estudiar
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="nombreCia" placeholder="Ej: Apple Inc (AAPL)" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
-                    <input type="text" id="idCia" placeholder="NIT / RUT / Tax ID" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
-                </div>
-            </div>
-            <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 flex flex-col justify-center">
-                <span class="text-xs font-bold text-indigo-400 uppercase">Estado del Sistema</span>
-                <div class="flex items-center space-x-2 mt-1 text-indigo-900">
-                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="font-bold">Analizador Generativo Activo</span>
-                </div>
-            </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" id="nombreCia" placeholder="Nombre de la Compañía" class="p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+            <input type="text" id="idCia" placeholder="NIT / RUT" class="p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <div class="lg:col-span-4 space-y-6">
-                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-indigo-500">
-                    <h3 class="font-black text-slate-700 mb-6 flex justify-between">
-                        BALANCE GENERAL 
-                        <span class="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-400">USD/COP/EUR</span>
-                    </h3>
-                    
+            <div class="lg:col-span-4 space-y-4">
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-indigo-600">
+                    <h3 class="font-black text-slate-700 mb-6 uppercase text-sm tracking-widest">Balance General</h3>
                     <div class="space-y-4">
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1">Activo Corriente (Total Current Assets)</label>
-                            <input type="number" id="ac" value="0" class="w-full p-2.5 bg-slate-50 border rounded-lg group-hover:border-indigo-300 outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Activo Corriente</label>
+                            <input type="number" id="ac" value="0" class="w-full p-2 bg-slate-50 border rounded-lg outline-none font-bold" oninput="analizar()">
                         </div>
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1 text-blue-600">(-) Inventarios (Inventory)</label>
-                            <input type="number" id="inv" value="0" class="w-full p-2.5 bg-blue-50 border border-blue-100 rounded-lg outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Inventarios</label>
+                            <input type="number" id="inv" value="0" class="w-full p-2 bg-slate-50 border rounded-lg outline-none font-bold" oninput="analizar()">
                         </div>
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1">Activo Total (Total Assets)</label>
-                            <input type="number" id="at" value="0" class="w-full p-2.5 bg-slate-50 border rounded-lg outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Pasivo Corriente</label>
+                            <input type="number" id="pc" value="0" class="w-full p-2 bg-orange-50 border border-orange-100 rounded-lg outline-none font-bold text-orange-700" oninput="analizar()">
                         </div>
-                        <hr class="my-4">
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1">Pasivo Corriente (Total Current Liabilities)</label>
-                            <input type="number" id="pc" value="0" class="w-full p-2.5 bg-orange-50 border border-orange-100 rounded-lg outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Activo Total</label>
+                            <input type="number" id="at" value="0" class="w-full p-2 bg-slate-50 border rounded-lg outline-none font-bold" oninput="analizar()">
                         </div>
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1">Pasivo Total (Total Liabilities)</label>
-                            <input type="number" id="pt" value="0" class="w-full p-2.5 bg-red-50 border border-red-100 rounded-lg outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Pasivo Total</label>
+                            <input type="number" id="pt" value="0" class="w-full p-2 bg-red-50 border border-red-100 rounded-lg outline-none font-bold text-red-700" oninput="analizar()">
                         </div>
-                        <div class="group">
-                            <label class="block text-xs font-bold text-slate-500 mb-1">Patrimonio Neto (Total Equity)</label>
-                            <input type="number" id="pat" value="0" class="w-full p-2.5 bg-green-50 border border-green-100 rounded-lg outline-none transition-all" oninput="analizarViabilidad()">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase">Patrimonio</label>
+                            <input type="number" id="pat" value="0" class="w-full p-2 bg-green-50 border border-green-100 rounded-lg outline-none font-bold text-green-700" oninput="analizar()">
                         </div>
-                    </div>
-
-                    <div class="mt-8 flex flex-col space-y-3">
-                        <button onclick="exportarReporte()" class="w-full bg-slate-800 hover:bg-black text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center">
-                            <i class="fas fa-file-download mr-2"></i> Exportar Análisis
-                        </button>
-                        <button onclick="window.location.reload()" class="text-xs text-slate-400 hover:text-red-500 transition-all font-bold uppercase tracking-widest">Reiniciar Estudio</button>
                     </div>
                 </div>
             </div>
 
             <div class="lg:col-span-8 space-y-6">
-                
-                <div id="diagnosticoCard" class="bg-slate-200 rounded-3xl p-10 flex flex-col items-center justify-center text-center transition-all duration-700 min-h-[250px] shadow-2xl relative overflow-hidden">
-                    <div id="diagIcon" class="text-5xl mb-4 text-slate-400">
-                        <i class="fas fa-calculator animate-bounce"></i>
-                    </div>
-                    <h2 id="diagTitulo" class="text-3xl font-black uppercase tracking-tighter mb-2">Esperando Datos</h2>
-                    <p id="diagMensaje" class="text-lg opacity-80 max-w-md">Ingrese los valores del balance para determinar la viabilidad financiera de la compañía.</p>
+                <div id="diagCard" class="bg-slate-200 rounded-[2rem] p-10 text-center shadow-xl transition-all duration-500">
+                    <h2 id="diagTitulo" class="text-3xl font-black uppercase mb-2 text-slate-600 tracking-tighter">Esperando Datos</h2>
+                    <p id="diagMensaje" class="text-slate-500">Ingrese valores para iniciar el análisis VP.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border-b-4 border-blue-500">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Liquidez (Razón Corriente)</p>
-                        <h4 id="ratioLiq" class="text-3xl font-black text-slate-700">0.00</h4>
-                        <div id="liqBar" class="w-full bg-slate-100 h-1.5 mt-3 rounded-full overflow-hidden">
-                            <div id="liqProg" class="bg-blue-500 h-full w-0 transition-all"></div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-b-4 border-indigo-500">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">Prueba Ácida (Efectivo Real)</p>
-                        <h4 id="ratioAcid" class="text-3xl font-black text-slate-700">0.00</h4>
-                        <div id="acidBar" class="w-full bg-slate-100 h-1.5 mt-3 rounded-full overflow-hidden">
-                            <div id="acidProg" class="bg-indigo-500 h-full w-0 transition-all"></div>
-                        </div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Liquidez</p>
+                        <h4 id="resLiq" class="text-3xl font-black text-slate-700">0.00</h4>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-sm border-b-4 border-orange-500">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">% Endeudamiento Total</p>
-                        <h4 id="ratioEnd" class="text-3xl font-black text-slate-700">0%</h4>
-                        <div id="endBar" class="w-full bg-slate-100 h-1.5 mt-3 rounded-full overflow-hidden">
-                            <div id="endProg" class="bg-orange-500 h-full w-0 transition-all"></div>
-                        </div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">% Endeudamiento</p>
+                        <h4 id="resEnd" class="text-3xl font-black text-slate-700">0%</h4>
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl shadow-md border-l-8 border-yellow-400 flex flex-wrap justify-between items-center">
-                    <div>
-                        <p class="text-xs font-bold text-slate-400 uppercase">Ecuación Contable</p>
-                        <p class="text-sm font-medium text-slate-600">Activo = Pasivo + Patrimonio</p>
-                    </div>
-                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
-                        <div class="text-center">
-                            <span class="text-[10px] font-bold text-slate-400 block uppercase">Lado A</span>
-                            <span id="ladoA" class="text-xl font-black">$ 0</span>
-                        </div>
-                        <div class="text-2xl font-black text-yellow-400">?</div>
-                        <div class="text-center">
-                            <span class="text-[10px] font-bold text-slate-400 block uppercase">Lado B</span>
-                            <span id="ladoB" class="text-xl font-black">$ 0</span>
-                        </div>
-                        <div id="statusIcon">
-                            <i class="fas fa-exclamation-triangle text-slate-300 text-2xl"></i>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="enviarWhatsApp()" class="bg-green-600 hover:bg-green-700 text-white font-black py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center space-x-3">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span>ENVIAR A WHATSAPP</span>
+                    </button>
+                    <button onclick="descargarBackup()" class="bg-indigo-900 hover:bg-black text-white font-black py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center space-x-3">
+                        <i class="fas fa-download"></i>
+                        <span>BACKUP HISTÓRICO</span>
+                    </button>
                 </div>
-
             </div>
         </div>
     </main>
 
-    <footer class="mt-20 py-10 bg-indigo-950 text-white text-center">
-        <div class="flex flex-col items-center space-y-4">
-            <div class="bg-indigo-800 px-4 py-1 rounded-full text-[10px] font-black tracking-widest border border-indigo-700">VIBRAS POSITIVAS - 2026</div>
-            <p class="text-indigo-300 text-xs">App Genérica de Interpretación de Balances para Estudio Global</p>
-            <div class="flex space-x-6 text-indigo-400 text-sm">
-                <span><i class="fas fa-shield-alt mr-1"></i> Control de Subscripción</span>
-                <span><i class="fas fa-copyright mr-1"></i> Derechos de Autor Reservados</span>
-            </div>
-        </div>
+    <footer class="mt-12 py-10 bg-slate-900 text-white text-center border-t-4 border-indigo-500">
+        <p class="text-[11px] font-black tracking-[0.3em] text-indigo-400 mb-2 uppercase">App desarrollada por Vibras Positivas</p>
+        <p class="text-[10px] opacity-40 uppercase">Derechos de Autor © 2026 | Caucasia, Antioquia, Colombia</p>
     </footer>
 
     <script>
-        // Reloj Colombia
+        // --- CONTROL DE SUSCRIPCIÓN INVISIBLE ---
+        // Cambiar a 'false' para bloquear la app remotamente
+        const suscripcionActiva = true; 
+        if (!suscripcionActiva) {
+            document.getElementById('appBody').classList.add('suspendido');
+        }
+
+        // --- HORA REAL COLOMBIA ---
         function updateClock() {
             const now = new Date();
-            const options = { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            document.getElementById('reloj-colombia').textContent = now.toLocaleTimeString('es-CO', options);
+            const options = { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric', hour12: true };
+            document.getElementById('reloj-colombia').textContent = now.toLocaleString('es-CO', options);
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        function analizarViabilidad() {
-            // Inputs
+        // --- LÓGICA DE ANÁLISIS ---
+        function analizar() {
             const ac = parseFloat(document.getElementById('ac').value) || 0;
             const inv = parseFloat(document.getElementById('inv').value) || 0;
-            const at = parseFloat(document.getElementById('at').value) || 0;
             const pc = parseFloat(document.getElementById('pc').value) || 0;
+            const at = parseFloat(document.getElementById('at').value) || 0;
             const pt = parseFloat(document.getElementById('pt').value) || 0;
-            const pat = parseFloat(document.getElementById('pat').value) || 0;
 
-            // Ratios
-            const liquidez = pc > 0 ? (ac / pc) : 0;
-            const pruebaAcida = pc > 0 ? ((ac - inv) / pc) : 0;
-            const endeudamiento = at > 0 ? ((pt / at) * 100) : 0;
-            const capitalTrabajo = ac - pc;
+            const liq = pc > 0 ? (ac / pc) : 0;
+            const end = at > 0 ? ((pt / at) * 100) : 0;
 
-            // UI Ratios
-            document.getElementById('ratioLiq').innerText = liquidez.toFixed(2);
-            document.getElementById('ratioAcid').innerText = pruebaAcida.toFixed(2);
-            document.getElementById('ratioEnd').innerText = endeudamiento.toFixed(1) + "%";
+            document.getElementById('resLiq').innerText = liq.toFixed(2);
+            document.getElementById('resEnd').innerText = end.toFixed(1) + "%";
 
-            // Barras de Progreso
-            document.getElementById('liqProg').style.width = Math.min(liquidez * 50, 100) + "%";
-            document.getElementById('acidProg').style.width = Math.min(pruebaAcida * 50, 100) + "%";
-            document.getElementById('endProg').style.width = Math.min(endeudamiento, 100) + "%";
-
-            // Ecuación Contable
-            const ladoA = at;
-            const ladoB = pt + pat;
-            document.getElementById('ladoA').innerText = "$ " + ladoA.toLocaleString();
-            document.getElementById('ladoB').innerText = "$ " + ladoB.toLocaleString();
-            
-            const diff = Math.abs(ladoA - ladoB);
-            const statusIcon = document.getElementById('statusIcon');
-            if(diff < 1 && at > 0) {
-                statusIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-2xl"></i>';
-            } else {
-                statusIcon.innerHTML = '<i class="fas fa-exclamation-triangle text-orange-400 text-2xl animate-pulse"></i>';
-            }
-
-            // Lógica de Viabilidad (Semáforo)
-            const card = document.getElementById('diagnosticoCard');
-            const titulo = document.getElementById('diagTitulo');
-            const mensaje = document.getElementById('diagMensaje');
-            const icon = document.getElementById('diagIcon');
+            const card = document.getElementById('diagCard');
+            const tit = document.getElementById('diagTitulo');
+            const msg = document.getElementById('diagMensaje');
 
             if(at === 0) return;
 
-            if(liquidez >= 1.2 && endeudamiento <= 65) {
-                // VIABLE
-                card.className = "bg-green-600 text-white rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-2xl scale-100 transition-all";
-                titulo.innerText = "Compañía Viable";
-                mensaje.innerText = "La empresa presenta un ADN financiero sólido con capacidad de pago y deuda controlada.";
-                icon.innerHTML = '<i class="fas fa-shield-check"></i>';
-            } else if (liquidez >= 1.0 || (endeudamiento > 65 && endeudamiento <= 80)) {
-                // ALERTA
-                card.className = "bg-yellow-400 text-indigo-900 rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-2xl transition-all";
-                titulo.innerText = "Estado de Alerta";
-                mensaje.innerText = "Atención: La liquidez está ajustada o el nivel de deuda está superando los límites recomendados.";
-                icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+            if(liq >= 1.2 && end <= 60) {
+                card.className = "bg-green-600 text-white rounded-[2rem] p-10 text-center shadow-xl transition-all";
+                tit.innerText = "Viable";
+                msg.innerText = "ADN Financiero sólido. Aprobado por VP.";
+            } else if (liq >= 1) {
+                card.className = "bg-yellow-400 text-indigo-900 rounded-[2rem] p-10 text-center shadow-xl transition-all";
+                tit.innerText = "Alerta";
+                msg.innerText = "Liquidez ajustada. Revisar pasivos.";
             } else {
-                // INVIABLE
-                card.className = "bg-red-600 text-white rounded-3xl p-10 flex flex-col items-center justify-center text-center shadow-2xl transition-all";
-                titulo.innerText = "Riesgo de Insolvencia";
-                mensaje.innerText = "Compañía Inviable bajo este esquema. El pasivo supera la capacidad operativa o el capital está comprometido.";
-                icon.innerHTML = '<i class="fas fa-skull-crossbones"></i>';
+                card.className = "bg-red-600 text-white rounded-[2rem] p-10 text-center shadow-xl transition-all";
+                tit.innerText = "Inviable";
+                msg.innerText = "Riesgo crítico de insolvencia.";
             }
         }
 
-        function exportarReporte() {
+        // --- ENVÍO A WHATSAPP ---
+        function enviarWhatsApp() {
+            const tel = "573117700431";
+            const cia = document.getElementById('nombreCia').value || "Empresa Sin Nombre";
+            const nit = document.getElementById('idCia').value || "S/N";
+            const diag = document.getElementById('diagTitulo').innerText;
+            const liq = document.getElementById('resLiq').innerText;
+            const end = document.getElementById('resEnd').innerText;
+            const fecha = document.getElementById('reloj-colombia').textContent;
+
+            const msj = `*RESULTADOS ANALIZADOR VP*%0A` +
+                        `----------------------------%0A` +
+                        `*Compañía:* ${cia}%0A` +
+                        `*NIT/RUT:* ${nit}%0A` +
+                        `*Fecha:* ${fecha}%0A` +
+                        `----------------------------%0A` +
+                        `*DIAGNÓSTICO:* ${diag}%0A` +
+                        `*Liquidez:* ${liq}%0A` +
+                        `*Endeudamiento:* ${end}%0A` +
+                        `----------------------------%0A` +
+                        `_App por Vibras Positivas_`;
+
+            window.open(`https://wa.me/${tel}?text=${msj}`, '_blank');
+        }
+
+        function descargarBackup() {
             const data = {
-                empresa: document.getElementById('nombreCia').value || "Empresa Genérica",
-                nit: document.getElementById('idCia').value || "N/A",
-                fecha: new Date().toLocaleString(),
-                viabilidad: document.getElementById('diagTitulo').innerText,
-                ratios: {
-                    liquidez: document.getElementById('ratioLiq').innerText,
-                    prueba_acida: document.getElementById('ratioAcid').innerText,
-                    endeudamiento: document.getElementById('ratioEnd').innerText
-                }
+                header: "Vibras Positivas Backup",
+                fecha: document.getElementById('reloj-colombia').textContent,
+                empresa: document.getElementById('nombreCia').value,
+                resultado: document.getElementById('diagTitulo').innerText
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `Estudio_${data.empresa.replace(/\s+/g, '_')}.json`;
+            a.href = URL.createObjectURL(blob);
+            a.download = `VP_Backup_${data.empresa}.json`;
             a.click();
         }
     </script>
